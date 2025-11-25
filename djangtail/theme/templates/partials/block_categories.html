@@ -1,0 +1,14 @@
+<div id="category" class="grid grid-cols-2 md:grid-cols-6 gap-6 justify-center items-center {% if not show_filters %}hidden{% endif %}">
+                {% for category in categories %}
+                <!--Rappel Toi qu'içi tu as utilisé Unpoly "up-target"-->
+                <a href="products/{{category.name}}" up-target="#produits" class="
+                flex items-center justify-center
+                text-base font-semibold p-3 md:p-6
+                rounded-xl text-Rougebrillant
+                transition
+                shadow-lg
+                transform hover:scale125 rounded-lg"> 
+                {{category.name}}
+                </a>
+                {% endfor %}
+</div>

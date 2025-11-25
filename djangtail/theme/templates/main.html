@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% load unicorn %}
+{% block content %}
+
+    <!--Hero-->
+    <section id="hero" class="">
+        <div class="container mx-auto mt-5 flex flex-col-reverse md:flex-row 
+    justify-center items-center space-y-6 md:space-y-0 
+    bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/static/img/mine/img2.jpg')] 
+    bg-cover bg-center px-12 p-4">
+
+            
+            <div class="flex flex-col text-white mb-2 mt-4 md:mt-0 space-y-6 md:w-1/2">
+
+                <h2 class="font-bold text-2xl text-left md:text-4xl md:text-left">
+                    L’expertise en TIC qui vous accompagne
+                </h2>
+                <div class="flex md:flex-col flex-row space-x-4">
+                    <a href="{% url 'products' %}" class="md:hidden px-4 py-2 rounded-lg text-center text-bold text-white bg-Rougebrillant">Boutique</a>
+                    <a href=" {% url 'services' %} " class="md:hidden px-4 py-2 rounded-lg text-center text-bold text-white bg-Rougebrillant">Travaux</a>
+                </div>
+                <p class="max-w-sm text-left hidden md:block">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut mollitia dolore eaque magni doloribus expedita officia et. Consequuntur, unde corrupti.
+                </p>
+
+                <!--une liste-->
+                <ul class="mb-8 space-y-2 text-2xl hidden md:block">
+                    <li class="flex items-center gap-x-5 max-lg:gap-x-2.5 animate-fade-up" data-wow-delay="1.5s">
+                        <svg class="text-primary w-5 h-5" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="9" r="6" fill="currentColor"></circle>
+                            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-opacity="0.3" stroke-width="3"></circle>
+                        </svg>
+                        <span class="">Avoir la qualité à moindre coût</span>
+                    </li>
+                    <li class="flex items-center gap-x-5 max-lg:gap-x-2.5 animate-fade-up" data-wow-delay="1.5s">
+                        <svg class="text-primary w-5 h-5" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="9" r="6" fill="currentColor"></circle>
+                            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-opacity="0.3" stroke-width="3"></circle>
+                        </svg>
+                        <span class="">Le meilleur service en bref délai</span>
+                    </li>
+                </ul>
+
+                <div class="flex space-x-6">
+                    <a href=" {% url 'products' %} " class="hidden md:block rounded-lg hover:bg-black hover:text-white hover:border-white border-2  px-6 py-3 text-semibold">Acheter</a>
+                    <a href=" {% url 'services' %} " class="hidden md:block rounded-lg hover:bg-black hover:text-white hover:border-white border-2  px-6 py-3 text-semibold">Demande Devis</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative md:space-y-0 group flex justify-center">
+                <!-- Image -->
+                <img class="hidden md:block rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105" 
+                     src="static/img/mine/img.jpg" 
+                     alt="Image">
+                
+                <!-- Overlay avec le texte -->
+                <!--
+                <div class="absolute space-y-6 inset-0 bg-black bg-opacity-20 flex flex-col items-center justify-center 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+                    <span class="text-white text-lg font-semibold">Nous sommes MANAGE</span>
+                    <a href=" {% url 'products' %}  " class="rounded-lg hover:bg-white px-3 py-3 bg-black text-Rougebrillant text-bold">Acheter</a>
+                    <a href="  {% url 'services' %} " class="rounded-lg hover:bg-white  px-3 py-3 bg-black text-Rougebrillant text-bold">Demande Devis</a>
+                </div>
+                -->
+
+                <!--text Rotate-->
+            </div>
+    </section>
+
+
+    <!--Section service-->
+<section id="services">
+        <div class="container bg-gray-50 py-6 mx-auto mt-2">
+            <h2 class="text-center text-lg text-bg-Rougebrillant sm:text-2xl m-6 font-semibold uppercase ">
+                Services Pro
+            </h2>
+            <h2 class="text-center font-bold text-white bg-black py-2 rounded-lg shadow-lg">
+                Nos Services en Vogue
+            </h2>
+        
+            {% unicorn 'services' %}
+        </div>
+</section>
+
+    <!--Section Notre -->
+<section id="organisation" class="">
+    <div class="container md:p-2 space-x-6 md:text-2xl flex flex-col-reverse md:flex-row mt-6 mx-auto px-6 justify-center items-center">
+
+        <div class="md:w-2/3 justify-center items-left flex flex-col bg-gray p-6 rounded-xl shadow-lg">
+            <ol class="text-left space-y-6">
+
+                <!-- Bloc 1 -->
+                <li>
+                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 space-y-6 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
+                        Expertise et innovation
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                        </svg>
+                    </h4>
+
+                    <div class="text-sm">
+                        <p class="d-block font-semibold text-lg ">
+                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">1</span>
+                            Nous assurons la maintenance et la réparation professionnelle de vos équipements informatiques pour garantir leur performance durable.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- Bloc 2 -->
+                <li>
+                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
+                        Sécurité et fiabilité
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejojin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </h4>
+
+                    <div class="text-sm">
+                        <p class="d-block font-semibold text-lg ">
+                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">2</span>
+                            Nous mettons en place des solutions de sécurité réseau robustes pour protéger vos données et vos infrastructures.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- Bloc 3 -->
+                <li>
+                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
+                        Réseau et connectivité
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </h4>
+
+                    <div class="text-sm">
+                        <p class="d-block font-semibold text-lg ">
+                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">3</span>
+                            Nous réalisons l’installation, la configuration et l’optimisation de réseaux Wi-Fi et câblés pour une connectivité fiable.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- Bloc 4 -->
+                <li>
+                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
+                        Organisation et performance
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </h4>
+
+                    <div class="text-sm">
+                        <p class="d-block font-semibold text-lg ">
+                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">4</span>
+                            Nous optimisons l’organisation informatique de votre entreprise pour améliorer la productivité et réduire les interruptions.
+                        </p>
+                    </div>
+                </li>
+
+            </ol>
+        </div>
+
+        <div class="md:w-1/3 shadow-md">
+            <img src="static/img/organ.svg" alt="">
+        </div>
+
+    </div>
+</section>
+
+
+    <!--Carousel de Products-->
+<section id="products" >
+        <div class="container bg-gray-50 items-center px-6 mx-auto space-y-3 mt-10 mb-6">
+
+            <h2 class="text-center text-lg text-bg-Rougebrillant sm:text-2xl m-6 font-semibold uppercase ">
+                Produits Du Jour
+            </h2>
+            <h2 class="text-center font-bold text-white bg-black py-2 rounded-lg shadow-lg">
+                Nos Services en Vogue
+            </h2>
+            <p class="text-center text-1xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, esse! Nam porro, veniam tempora iste culpa ex magnam nulla autem!</p>
+            </div>
+                
+            {% unicorn 'products' %}
+
+        </div>
+
+</section>
+
+    <!--Section testimonial-->
+    <section id="testimonial" class="">
+        <div class="container px-6 mx-auto mt-12">
+            <div class=" md:space-x-12 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-2.5">
+                    <div class="style-4 text-center space-y-6 mb-0">
+                        <h4 class="text-blue-600 text-2lg font-bold underline">Ce que Disent nos clients</h4>
+                        <h2 class="text-2xl md:text-4xl font-bold">L'organisation que nous adoptons</h2>
+                        <p class="text-gray-500 sm:text-[1rem]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium obcaecati quas eum cum d</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 px-6 max-w-xl items-center">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Contact WhatsApp -->
+                <div class="text-center border-2 border-Green p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold text-bg-Rougebrillant mb-4">Contactez-nous sur WhatsApp</h2>
+                    <p class="text-black mb-4">Discutez avec nous directement sur WhatsApp.</p>
+                    <a href="https://wa.me/1234567890" 
+                       class="inline-block bg-Green text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-black transition">
+                        Envoyer un message
+                    </a>
+                </div>
+    
+                <!-- Contact Email -->
+                <div class="text-center border-2 border-black p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold text-black mb-4">Contactez-nous par Email</h2>
+                    <p class="text-black mb-4">Remplissez le formulaire ci-dessous :</p>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
+                        <textarea placeholder="Votre message" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"></textarea>
+                        <button type="submit" class="w-full bg-black text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-Rougebrillant transition">
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-6">
+    {% for service in services|slice:":visible_count" %}
+        {% if forloop.counter <= visible_count %}
+            
+            <div class="group relative p-6 min-h-[200px] border border-transparent bg-white hover:bg-cover 
+            hover:bg-center rounded-lg shadow-lg bg-white text-center flex flex-col items-center justify-between overflow-hidden">
+                <!-- Icône en background -->
+                <!-- Image de fond, invisible au début, visible au survol -->
+                <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center duration-300">
+                    
+                </div>
+    
+                <!-- Contenu -->
+                <div class="flex md:flex-row md:items-center flex-col  space-x-2 space-y-2  text-2xl sm:text-center">
+                <h3 class="p-2  rounded-md text-xl font-bold text-gray">
+                {{ service.name }}
+                </h3>
+                <i class="{{ service.icon }} text-Rougebrillant sm:ml-2"></i>
+                </div>
+                <p class="text-lg font-semibold relative"> {{  service.description }} </p>
+                
+                <!-- Boutons -->
+                <div class="flex gap-2 mt-4 relative">
+                    <a href="https://wa.me/2290154736875" target="_blank" class="px-4 py-2 text-sm text-xl text-white bg-green-500 rounded-lg hover:bg-green-600 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200">
+                        Voir plus
+                    </a>
+                </div>
+            </div>
+
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% if visible_count < services|length %}
+    <div class="text-center mt-6">
+        <button unicorn:click="" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Explorer
+        </button>
+            <button unicorn:click="load_more" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Voir plus de services <i class="fas fa-plus"></i> 
+        </button>
+    </div>
+    {% else %}
+    <div class="text-center mt-6">
+        <button unicorn:click="" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Explorer
+        </button>
+            <button unicorn:click="load_less" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Voir plus de services <i class="fas fa-minus"></i> 
+        </button>
+        </div>
+    {% endif %}
+</div>
+
+
+

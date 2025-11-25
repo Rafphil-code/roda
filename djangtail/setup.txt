@@ -1,0 +1,47 @@
+django	#Framework principal
+django-tailwind	#Intégration Tailwind CSS dans Django
+django-browser-reload	#Rafraîchissement automatique du navigateur (pendant le développement)
+django-unicorn	#Composants dynamiques côté serveur
+Pillow	#Gestion des images (nécessaire pour ImageField)
+
+ETAPES DE CONFIG
+
+1-Faire ces ajouts dans settings.py 
+# Tes applications
+    'core',            # ton app principale
+    'theme',           # app tailwind
+    'unicorn',         # django-unicorn
+
+    # Outils front-end
+    'django_browser_reload',  # pour rechargement automatique
+
+2-Ecrire cette ligne dans settings.py : TAILWIND_APP_NAME = 'theme'
+Définir le internal IP
+
+3-Toujours dans settings.py 
+Configurer la route des fichiers statiques 
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+
+4- Dans urls.py
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls")),
+]
+
+5-Initialiser tailwind avec  : 
+python manage.py tailwind init theme
+
+
+6-
+cd theme
+npm install
+cd ..
+python manage.py tailwind build
+
+7-lancer runserver

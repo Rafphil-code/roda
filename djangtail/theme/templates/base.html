@@ -1,0 +1,123 @@
+
+{% load static tailwind_tags %}
+{% load unicorn %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1B8vZ9c4YBj5WZ8q1YkW+QhQ0v+hZaK9A6Qw3xU8c8Hu9GZsd9+7e1j3x+R0kE6R0w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/unpoly@3.10.2/unpoly.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/unpoly@3.10.2/unpoly.min.js"></script>
+
+    {% tailwind_css %}
+    {% unicorn_scripts %}
+
+    <title>Roda Website</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+<body>
+    <!--For unicorn-->
+    {% csrf_token %}
+<!--Section de la Navigation-->
+<nav class="relative container mx-auto p-6">
+    <div class="flex items-center justify-between">
+        <!--Logo-->
+        <div class="pt-2">
+            <img class="h-[80px]" src="static/img/roda.jpg" alt="">
+        </div>
+
+        <!--Les liens-->
+        <div class="hidden md:flex flex-row space-x-8">
+            <a class="hover:text-Rougebrillant text-lg font-semibold" href=" {% url 'index' %} ">Acceuil</a>
+            <a class="hover:text-Rougebrillant text-lg font-semibold" href="{% url 'products' %}">Produits</a>
+            <a class="hover:text-Rougebrillant text-lg font-semibold" href="{% url 'services' %}">Services</a>
+            <a class="hover:text-Rougebrillant text-lg font-semibold" href="">Blog</a>
+        </div>
+
+        <!--Button-->
+        <div class="flex space-x-6">
+        <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href=" {% url 'carts' %} "><i class="fas fa-shopping-cart"></i></a>
+        <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="">Explorer</a>
+        <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="">Login</a>
+        </div>
+
+        <!--hamburger pour Mobile-->
+        <button id="menu-btn" class="flex flex-col justify-between w-10 h-5 md:hidden">
+            <span id="bar1" class="block w-8 h-1 bg-black rounded transition-all duration-300"></span>
+            <span id="bar2" class="block w-8 h-1 bg-black rounded transition-all duration-300"></span>
+            <span id="bar3" class="block w-8 h-1 bg-black rounded transition-all duration-300"></span>
+        </button>
+    </div>
+
+    <!--Menu pour Android-->
+    <div class="md:hidden">
+        <div id="menu" class="absolute hidden flex-col items-center py-8 mt-10 space-y-6 bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+            <a class="hover:text-red-500" href=" {% url 'index' %} ">Accueil</a>
+            <a class="hover:text-red-500" href="{% url 'products' %}">Produits</a>
+            <a class="hover:text-red-500" href=" {% url 'services' %} ">Services</a>
+            <a class="hover:text-red-500" href="#">Blog</a>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock content %}
+
+<!--Footer-->
+<section id="pied">
+    <footer class="bg-black text-white py-6 mt-6">
+        <div class="container mx-auto text-center">
+            <p class="text-lg font-semibold text-red-500">Nous sommes 1</p>
+            <p class="text-sm mt-2">&copy; 2025 Tous droits réservés.</p>
+            
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-red-500 hover:text-white text-xl" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-red-500 hover:text-white text-xl" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-red-500 hover:text-white text-xl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-red-500 hover:text-white text-xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+</section>
+</body>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+
+    menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        menu.classList.add('flex');
+        
+        bar1.classList.toggle('translate-y-2');  
+        bar1.classList.toggle('rotate-45');      
+        
+        bar2.classList.toggle('hidden');         
+
+        bar3.classList.toggle('-translate-y-2'); 
+        bar3.classList.toggle('-rotate-45');     
+    });
+</script>

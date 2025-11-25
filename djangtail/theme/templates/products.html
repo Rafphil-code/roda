@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load unicorn %}
+{% block content %}
+    <section id="colonnes">
+        <div class="container mx-auto sm:px-0 px-4">
+            <h1 class="my-6 text-xl md:text-4xl
+                text-gray-800">Bienvenue sur Products
+            </h1>
+
+            {% unicorn 'productsmain' %}
+            
+        </div>
+    </section>
+
+{% endblock content %}

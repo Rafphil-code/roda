@@ -1,0 +1,43 @@
+ <div class="container mt-2 mx-auto">
+                
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-transform duration-300">
+    {% for product in products|slice:":visible_count" %}
+        {% if forloop.counter <= visible_count %}
+        
+            <div class="cursor-pointer bg-white flex flex-col space-y-3 justify-center items-center transform transition-all transition-y-2 duration-300 shadow-lg hover:shadow-2xl rounded-xl p-4">
+                <img src="{{ product.image_url.url }}" class="h-48 object-cover rounded-lg" />
+                <h3 class="mt-2 font-semibold">{{ product.name }}</h3>
+                <p class="text-Green font-semibold">{{ product.price }} FCFA</p>
+                <div class="flex space-x-2">
+                    <a href="{% url 'add_to_cart' product.id %}" class="w bg-Rougebrillant p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-lg sm:text-md">Ajouter au Panier <i class="fas fa-shopping-cart"></i></a>
+                    <a href="" class="w bg-black p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-gl sm:text-md">Voir la catégorie <i class="fas fa-plus"></i></a> 
+                </div>               
+            </div>
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    {% if visible_count < products|length %}
+
+        <div class="text-center mt-6">
+            <button unicorn:click="" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Explorer
+            </button>
+            <button unicorn:click="load_more" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Voir plus de services <i class="fas fa-plus"></i> 
+            </button>
+        </div>
+    {% else %}
+        <div class="text-center mt-6">
+            <button unicorn:click="" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Explorer
+            </button>
+            <button unicorn:click="load_less" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Voir moins de services <i class="fas fa-minus"></i> 
+            </button>
+        </div>
+
+    {% endif %}
+
+</div>

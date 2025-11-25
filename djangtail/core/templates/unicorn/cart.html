@@ -1,0 +1,53 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-6">Panier de {{ request.user.username }} ({{ user_products.count }})</h2>
+
+    {% if user_products %}
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-100 border-b-2 border-gray-200">
+                <tr>
+                    <th class="text-left p-4">Produit</th>
+                    <th class="text-center p-4">Quantité</th>
+                    <th class="text-right p-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in user_products %}
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                    <!-- Nom produit -->
+                    <td class="p-4">
+                        <span class="font-medium">{{ product.product.name }}</span>
+                    </td>
+
+                    <!-- Quantité -->
+                    <td class="p-4 text-center">
+                        <div class="flex items-center justify-center space-x-2">
+                            <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">-</button>
+                            <span class="px-2 py-1">{{ product.quantity }}</span>
+                            <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+                        </div>
+                    </td>
+
+                    <!-- Actions -->
+                    <td class="p-4 text-right">
+                        <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Passer à la caisse -->
+    <div class="mt-6 text-right">
+        <button class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600">
+            Passer à la caisse
+        </button>
+    </div>
+
+    {% else %}
+        <p class="text-gray-500">Votre panier est vide.</p>
+    {% endif %}
+</div>
