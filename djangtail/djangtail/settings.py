@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-xg%(@4ho8nx12!q47(1dpfd9c46)+_j^ym#z$2!+ig_@_q%o#q
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.12.128',
-                '127.0.0.1']
+                '127.0.0.1',
+                'roda-1.onrender.com',]
 
 
 # Application definition
