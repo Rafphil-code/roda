@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.12.128',
                 '127.0.0.1',
-                'roda.onrender.com']
+                'roda-212t.onrender.com',]
 
 
 # Application definition
