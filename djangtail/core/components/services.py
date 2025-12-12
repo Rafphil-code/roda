@@ -1,5 +1,7 @@
 from django_unicorn.components import UnicornView
 from core.models import Service
+from django.urls import reverse
+from django.shortcuts import redirect
 
 class ServicesView(UnicornView):
     services = []
@@ -13,6 +15,11 @@ class ServicesView(UnicornView):
         # augmenter le nombre de services visibles
         print("c'est clicked")
         self.visible_count += 3
+        self.mount()
         
     def load_less(self):
         self.visible_count -= 3
+        self.mount()
+    
+    def go_to_service(self, service_id):
+        return redirect(reverse("get_service_filtered", args=[service_id]))

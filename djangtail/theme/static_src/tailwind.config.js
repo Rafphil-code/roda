@@ -51,7 +51,7 @@ module.exports = {
         extend: {
             colors: {
                 Rougebrillant: 'hsla(0, 87%, 45%, 1.00)',
-                Rougesimple: 'hsla(350, 100%, 36%, 0.85)',
+                Rougesimple: 'hsla(350, 71%, 42%, 0.85)',
                 RougeFort: 'hsla(350, 100%, 36%, 0.85)',
                 RougeFad: 'hsl(12, 88%, 95%)',
                 Green: 'hsla(108, 86%, 39%, 1.00)',

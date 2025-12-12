@@ -1,94 +1,184 @@
-<div class="w-full my-6 sm:flex-row sm:items-center sm:space-x-6 space-y-4 sm:space-y-0 px-2">
-
-                    <!-- Select catégorie -->
-                <div class="flex flex-row my-6">
-                        <select 
+<div class="w-full my-6 px-4 max-w-7xl mx-auto">
+    
+    <!-- Barre de filtres moderne -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <div class="flex flex-col lg:flex-row gap-4">
+            
+            <!-- Select catégorie avec icône -->
+            <div class="flex-1">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-filter mr-2 text-Rougebrillant"></i>
+                    Catégorie
+                </label>
+                <select 
                     unicorn:model="category_id"
                     unicorn:change="update_category"
-                    class="w-full bg-white border border-Rougebrillant rounded-lg px-4 py-2 shadow-sm
-                    outline-none focus:ring-2 focus:ring-Rougebrillant focus:border-none">
-                    <option value="None">Toutes les catégories</option>
+                    class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 shadow-sm
+                    outline-none focus:ring-2 focus:ring-Rougebrillant focus:border-Rougebrillant transition-all
+                    cursor-pointer hover:border-Rougebrillant">
+                    <option value="0">Toutes les catégories</option>
                     {% for category in categories %}
-                    <option value="{{category.id}}"> {{ category.name }} </option>
+                    <option value="{{category.id}}">{{ category.name }}</option>
                     {% endfor %}
-                    </select>
+                </select>
+            </div>
 
-                    <!-- Barre de recherche -->
-                    <form method="GET" action="" class="w-full px-2">
-                        <div class="flex w-full  mx-auto items-center border rounded-lg shadow-sm overflow-hidden">
-                            <input type="text" name="q" placeholder="Rechercher un produit"
-                                class="w-full py-2 px-4 focus:ring-2 focus:ring-Rougebrillant focus:outline-none">
-                            <button type="submit" class="py-3 px-3 bg-Rougebrillant text-white flex items-center justify-center hover:bg-black transition">
-                                <i class="fa fa-search text-xl"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <!-- Barre de recherche moderne -->
+            <div class="flex-1 lg:flex-[2]">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-search mr-2 text-Rougebrillant"></i>
+                    Rechercher
+                </label>
+                <form method="GET" action="" class="w-full">
+                    <div class="flex items-center border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden hover:border-Rougebrillant transition-all focus-within:ring-2 focus-within:ring-Rougebrillant focus-within:border-Rougebrillant">
+                        <input type="text" 
+                            name="q" 
+                            placeholder="Rechercher un produit..." 
+                            class="w-full py-3 px-4 outline-none bg-transparent">
+                        <button type="submit" 
+                            class="py-3 px-6 bg-gradient-to-r from-Rougebrillant to-red-600 text-white flex items-center justify-center hover:from-red-600 hover:to-Rougebrillant transition-all">
+                            <i class="fa fa-search text-lg"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                    <hr class="my-10 border-gray-500">
-                    <div class="bg:gray my-4 w-full h-auto gap-12 flex flex-wrap justify-center">
-                        {% for product in products %}
-                            <div class="w-60 p-2 bg-white rounded-xl transform transitio transition-y-2 duration-300 shadow-lg hover:shadow-2xl mt-4 mb-4 lg:mt-0 cursor-pointer">
-                            <img src="{{product.image_url.url}}" alt="" class="h-40 object-cover rounded-xl mx-auto">
-                            <div class="p-2">
-                                <h2 class="font-bold text-lg mb-2 truncate"> {{product.name}} </h2>
-                                <span class="font-semibold text-xl">Le model</span>
+    <!-- Séparateur stylisé -->
+    <div class="relative my-8">
+        <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-200"></div>
+        </div>
+        <div class="relative flex justify-center">
+            <span class="bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-2 text-sm font-semibold text-gray-600 rounded-full shadow">
+                Nos Produits
+            </span>
+        </div>
+    </div>
+
+    <!-- Grid de produits -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+        
+        {% for product in products %}
+        <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 cursor-pointer">
+            
+            <!-- Image avec overlay -->
+            <div class="relative h-56 bg-gray-100 overflow-hidden">
+                <img src="{{product.image_url.url}}" 
+                     alt="{{product.name}}" 
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 
-                                <div class="flex items-center gap-2">
-                                    <span class="text-sm line-through opacity-75"> {{product.price}} </span>
-                                    <span class="text-sm opacity-75"> {{product.price}} </span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    
-                                </div>
-                                <p class="truncate"> {{ product.description }} </p>
-                            </div>
-                            <div class="flex items-center justify-center gap-2 mb-3">
-                                <a href="{% url 'add_to_cart' product.id %}"
-                                class="flex items-center space-x-2 px-3 py-1 rounded-lg bg-gray-300 hover:bg-gray-500 text-white">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span>Ajouter</span>
-                                </a>
-                            <button class="px-3 py-1 rounded-lg bg-gray-300 hover:bg-gray-500">
-                            <i class="fa-solid fa-shopping-cart"></i>
-                            </button>
+                <!-- Overlay au hover -->
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+            </div>
 
-                            <button class="px-3 py-1 rounded-lg bg-gray-300 hover:bg-gray-500">
-                            <i class="fa-solid fa-heart"></i>
-                            </button>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <div class="flex justify-center mt-6 space-x-2"> <!--À lire fortt-->
+            <!-- Contenu de la carte -->
+            <div class="p-5">
+                <h2 class="font-bold text-lg mb-2 text-gray-800 truncate group-hover:text-Rougebrillant transition-colors">
+                    {{ product.name }}
+                </h2>
 
-                        {% if has_previous %}
-                        <button unicorn:click="change_page({{ page|add:'-1' }})"
-                        class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">
-                        &laquo; Précédent
-                        </button>
-                        {% else %}
-                        <span class="px-3 py-1 rounded bg-gray-100 text-gray-400">&laquo; Précédent</span>
-                        {% endif %}
+                <!-- Prix -->
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-lg font-bold text-gray-800">{{ product.price }} FCFA</span>
+                    <span class="text-sm line-through text-gray-400">{{ product.price }} FCFA</span>
+                </div>
+            </div>
 
-                        <!-- afficher 1 ... page-1 page page+1 ... total_pages -->
-                        {% for num in page_range %}
-                        {% if num == page %}
-                        <span class="px-3 py-1 rounded bg-blue-500 text-black">{{ num }}</span>
-                        {% else %}
-                        <button unicorn:click="change_page({{ num }})" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">{{ num }}</button>
-                        {% endif %}
-                        {% endfor %}
+            <!-- Boutons d'action -->
+            <div class="px-5 pb-5">
+                <div class="flex items-center gap-2">
+                    <!-- Bouton principal -->
+                    <button unicorn:click="add_to_cart({{ product.id }})"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-Rougebrillant to-red-600 hover:from-red-600 hover:to-Rougebrillant text-white font-semibold transition-all hover:scale-105 shadow-md hover:shadow-lg">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Ajouter</span>
+                    </button>
 
+                    <!-- Bouton favoris -->
+                    <button class="p-3 rounded-xl bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-Rougebrillant transition-all hover:scale-110">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
 
-                        {% if has_next %}
-                        <button unicorn:click="change_page({{ page|add:'1' }})"
-                        class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">
-                        Suivant &raquo;
-                        </button>
-                        {% else %}
-                        <span class="px-3 py-1 rounded bg-gray-100 text-gray-400">Suivant &raquo;</span>
-                        {% endif %}
-                    </div>
+                    <!-- Bouton aperçu/panier -->
+                    <button unicorn:click="view_modal({{product.id}})" class="p-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all hover:scale-110">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    <!-- Pagination moderne -->
+    <div class="flex justify-center items-center gap-2 mb-12 flex-wrap">
+        
+        <!-- Bouton Précédent -->
+        {% if has_previous %}
+        <button unicorn:click="change_page({{ page|add:'-1' }})"
+            class="px-4 py-2 rounded-xl bg-white shadow hover:shadow-md text-gray-700 hover:bg-Rougebrillant hover:text-white transition-all font-semibold">
+            <i class="fas fa-chevron-left mr-2"></i>
+            Précédent
+        </button>
+        {% else %}
+        <span class="px-4 py-2 rounded-xl bg-gray-100 text-gray-400 font-semibold">
+            <i class="fas fa-chevron-left mr-2"></i>
+            Précédent
+        </span>
+        {% endif %}
+
+        <!-- Numéros de page -->
+        {% for num in page_range %}
+            {% if num == page %}
+            <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-Rougebrillant text-white font-bold shadow-lg">
+                {{ num }}
+            </span>
+            {% else %}
+            <button unicorn:click="change_page({{ num }})" 
+                class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow hover:shadow-md text-gray-700 hover:bg-gray-100 transition-all font-semibold">
+                {{ num }}
+            </button>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Bouton Suivant -->
+        {% if has_next %}
+        <button unicorn:click="change_page({{ page|add:'1' }})"
+            class="px-4 py-2 rounded-xl bg-white shadow hover:shadow-md text-gray-700 hover:bg-Rougebrillant hover:text-white transition-all font-semibold">
+            Suivant
+            <i class="fas fa-chevron-right ml-2"></i>
+        </button>
+        {% else %}
+        <span class="px-4 py-2 rounded-xl bg-gray-100 text-gray-400 font-semibold">
+            Suivant
+            <i class="fas fa-chevron-right ml-2"></i>
+        </span>
+        {% endif %}
+    </div>
+    {% if display_modal %}
+    
+        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="modal-box w-full max-w-2xl mx-auto min-w-2xl p-6 space-y-4">
+            
+            <button unicorn:click="close_modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            
+            <img src="{{modal_product.image_url.url}}" class="w-full h-80 object-cover rounded-lg" />
+            <h3 class="text-lg font-bold"> {{modal_product.name}} </h3>
+            <p class="text-Green font-semibold"> {{modal_product.price}} FCFA</p>
+            <p>{{modal_product.description}}</p>
+            <div class="justify-center flex space-x-2">
+                    <button unicorn:click="add_to_cart({{ modal_product.id }})"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-Rougebrillant to-red-600 hover:from-red-600 hover:to-Rougebrillant text-white font-semibold transition-all hover:scale-105 shadow-md hover:shadow-lg">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Ajouter</span>
+                    </button>
+            </div> 
+        </div>
+        </div>
+    
+    {% endif %}
+
 
 </div>

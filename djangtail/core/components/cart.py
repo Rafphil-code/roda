@@ -7,8 +7,7 @@ class CartView(UnicornView):
     user_products : QuerySetType[UserItem] = None
     user_pk: int
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
-        self.user_pk = kwargs.get('user')
-        #self.user_products = UserItem.objects.filter(user=self.user_pk)
-        self.user_products = UserItem.objects.all()
+    def mount(self):
+        self.user_pk = self.user = self.component_kwargs.get("user")
+        self.user_products = UserItem.objects.filter(user_id=self.user_pk)
+

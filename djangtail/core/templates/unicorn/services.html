@@ -18,16 +18,16 @@
                 </h3>
                 <i class="{{ service.icon }} text-Rougebrillant sm:ml-2"></i>
                 </div>
-                <p class="text-lg font-semibold relative"> {{  service.description }} </p>
+                <p class="text-lg text-verydarkblue font-semibold relative"> {{  service.description }} </p>
                 
                 <!-- Boutons -->
                 <div class="flex gap-2 mt-4 relative">
                     <a href="https://wa.me/2290154736875" target="_blank" class="px-4 py-2 text-sm text-xl text-white bg-green-500 rounded-lg hover:bg-green-600 flex items-center gap-2">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
-                    <a href="#" class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200">
+                    <button unicorn:click="go_to_service({{service.id}})" class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200">
                         Voir plus
-                    </a>
+                    </button>
                 </div>
             </div>
 

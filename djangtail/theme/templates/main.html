@@ -3,16 +3,17 @@
 {% block content %}
 
     <!--Hero-->
-    <section id="hero" class="">
-        <div class="container mx-auto mt-5 flex flex-col-reverse md:flex-row 
-    justify-center items-center space-y-6 md:space-y-0 
-    bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/static/img/mine/img2.jpg')] 
-    bg-cover bg-center px-12 p-4">
+<section id="hero" class="p-6">
+        <div class="mx-auto mt-5 flex flex-col-reverse md:flex-row 
+        justify-center items-center space-y-6 md:space-y-6 
+        bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/static/img/mine/roda_user1.jpg')] 
+        bg-cover bg-center p-6">
 
             
-            <div class="flex flex-col text-white mb-2 mt-4 md:mt-0 space-y-6 md:w-1/2">
+            <div class="flex flex-col text-white mb-2 mt-4 md:mt-0  justify-center items-center md:w-2/3 p-2 md:p-6">
 
-                <h2 class="font-bold text-2xl text-left md:text-4xl md:text-left">
+                <div class="space-y-6">
+                    <h2 class="font-bold text-2xl text-left md:text-4xl md:text-left">
                     L’expertise en TIC qui vous accompagne
                 </h2>
                 <div class="flex md:flex-col flex-row space-x-4">
@@ -42,27 +43,15 @@
                 </ul>
 
                 <div class="flex space-x-6">
-                    <a href=" {% url 'products' %} " class="hidden md:block rounded-lg hover:bg-black hover:text-white hover:border-white border-2  px-6 py-3 text-semibold">Acheter</a>
-                    <a href=" {% url 'services' %} " class="hidden md:block rounded-lg hover:bg-black hover:text-white hover:border-white border-2  px-6 py-3 text-semibold">Demande Devis</a>
+                    <a href=" {% url 'products' %} " class="hidden md:block rounded-lg bg-Rougebrillant hover:bg-none border-2  px-6 py-3 text-semibold">Acheter</a>
+                    <a href=" {% url 'services' %} " class="hidden md:block rounded-lg bg-Rougebrillant hover:bg-none border-2  px-6 py-3 text-semibold">Demande Devis</a>
+                </div>
                 </div>
             </div>
-            <div class="md:w-1/2 relative md:space-y-0 group flex justify-center">
-                <!-- Image -->
-                <img class="hidden md:block rounded-2xl shadow-xl transition-transform duration-300 group-hover:scale-105" 
-                     src="static/img/mine/img.jpg" 
-                     alt="Image">
+            <div class="md:w-1/3 relative md:space-y-0 group   flex justify-center">
                 
-                <!-- Overlay avec le texte -->
-                <!--
-                <div class="absolute space-y-6 inset-0 bg-black bg-opacity-20 flex flex-col items-center justify-center 
-                            opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
-                    <span class="text-white text-lg font-semibold">Nous sommes MANAGE</span>
-                    <a href=" {% url 'products' %}  " class="rounded-lg hover:bg-white px-3 py-3 bg-black text-Rougebrillant text-bold">Acheter</a>
-                    <a href="  {% url 'services' %} " class="rounded-lg hover:bg-white  px-3 py-3 bg-black text-Rougebrillant text-bold">Demande Devis</a>
-                </div>
-                -->
-
-                <!--text Rotate-->
+                
+            
             </div>
     </section>
 
@@ -73,9 +62,16 @@
             <h2 class="text-center text-lg text-bg-Rougebrillant sm:text-2xl m-6 font-semibold uppercase ">
                 Services Pro
             </h2>
-            <h2 class="text-center font-bold text-white bg-black py-2 rounded-lg shadow-lg">
-                Nos Services en Vogue
-            </h2>
+            <div class="relative my-8">
+            <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center">
+            <span class="bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-2 text-sm font-semibold text-gray-600 rounded-full shadow">
+            Nos Service en Vogue
+            </span>
+            </div>
+            </div>
         
             {% unicorn 'services' %}
         </div>
@@ -85,79 +81,30 @@
 <section id="organisation" class="">
     <div class="container md:p-2 space-x-6 md:text-2xl flex flex-col-reverse md:flex-row mt-6 mx-auto px-6 justify-center items-center">
 
-        <div class="md:w-2/3 justify-center items-left flex flex-col bg-gray p-6 rounded-xl shadow-lg">
-            <ol class="text-left space-y-6">
+        <div class="md:w-2/3 mx-auto flex flex-col bg-gray-100 p-6 rounded-xl shadow-lg">
+    <ol class="space-y-6 relative justify-center items-center">
 
-                <!-- Bloc 1 -->
-                <li>
-                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 space-y-6 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
-                        Expertise et innovation
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                        </svg>
-                    </h4>
+        <!-- Bloc 1 -->
+        <li class="relative pl-12">
+            <!-- Ligne décorative -->
+            <span class="absolute left-5 top-0 bottom-0 w-1 bg-Rougebrillant rounded"></span>
 
-                    <div class="text-sm">
-                        <p class="d-block font-semibold text-lg ">
-                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">1</span>
-                            Nous assurons la maintenance et la réparation professionnelle de vos équipements informatiques pour garantir leur performance durable.
-                        </p>
-                    </div>
-                </li>
+            <h4 class="text-2xl flex flex-col md:flex-row items-center text-center space-x-4 font-bold text-Rougebrillant">
+                Expertise et innovation
+                <i class="fa fa-star"></i>
+            </h4>
 
-                <!-- Bloc 2 -->
-                <li>
-                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
-                        Sécurité et fiabilité
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejojin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                        </svg>
-                    </h4>
+            <div class=" relative mt-4 text-lg font-semibold flex space-x-6 space-y-6 items-start">
+                <span class="absolute flexrounded-full rounded-md bg-black text-white font-bold px-4">1</span>
+                <p class="">Nous assurons la maintenance et la réparation professionnelle de vos équipements informatiques pour garantir leur performance durable.</p>
+            </div>
+        </li>
 
-                    <div class="text-sm">
-                        <p class="d-block font-semibold text-lg ">
-                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">2</span>
-                            Nous mettons en place des solutions de sécurité réseau robustes pour protéger vos données et vos infrastructures.
-                        </p>
-                    </div>
-                </li>
+        
 
-                <!-- Bloc 3 -->
-                <li>
-                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
-                        Réseau et connectivité
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </h4>
+    </ol>
+    </div>
 
-                    <div class="text-sm">
-                        <p class="d-block font-semibold text-lg ">
-                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">3</span>
-                            Nous réalisons l’installation, la configuration et l’optimisation de réseaux Wi-Fi et câblés pour une connectivité fiable.
-                        </p>
-                    </div>
-                </li>
-
-                <!-- Bloc 4 -->
-                <li>
-                    <h4 class="text-2xl flex flex-col md:flex-row space-x-12 items-center justify-center text-center font-bold text-Rougebrillant px-6 rounded-full">
-                        Organisation et performance
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[2rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </h4>
-
-                    <div class="text-sm">
-                        <p class="d-block font-semibold text-lg ">
-                            <span class="rounded-full p-2 bg-black font-bold px-4 text-white">4</span>
-                            Nous optimisons l’organisation informatique de votre entreprise pour améliorer la productivité et réduire les interruptions.
-                        </p>
-                    </div>
-                </li>
-
-            </ol>
-        </div>
 
         <div class="md:w-1/3 shadow-md">
             <img src="static/img/organ.svg" alt="">
@@ -168,15 +115,22 @@
 
 
     <!--Carousel de Products-->
-<section id="products" >
+<section id="products">
         <div class="container bg-gray-50 items-center px-6 mx-auto space-y-3 mt-10 mb-6">
 
             <h2 class="text-center text-lg text-bg-Rougebrillant sm:text-2xl m-6 font-semibold uppercase ">
                 Produits Du Jour
             </h2>
-            <h2 class="text-center font-bold text-white bg-black py-2 rounded-lg shadow-lg">
-                Nos Services en Vogue
-            </h2>
+            <div class="relative my-8">
+            <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center">
+            <span class="bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-2 text-sm font-semibold text-gray-600 rounded-full shadow">
+                Nos Produits
+            </span>
+            </div>
+            </div>
             <p class="text-center text-1xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, esse! Nam porro, veniam tempora iste culpa ex magnam nulla autem!</p>
             </div>
                 
@@ -220,10 +174,11 @@
                 <div class="text-center border-2 border-black p-6 rounded-lg shadow-lg">
                     <h2 class="text-2xl font-bold text-black mb-4">Contactez-nous par Email</h2>
                     <p class="text-black mb-4">Remplissez le formulaire ci-dessous :</p>
-                    <form class="space-y-4">
-                        <input type="text" placeholder="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
-                        <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
-                        <textarea placeholder="Votre message" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"></textarea>
+                    <form class="space-y-4" method="POST" action="{% url "send_email" %}">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
+                        <input type="email" name="mail" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
+                        <textarea name="message" placeholder="Votre message" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"></textarea>
                         <button type="submit" class="w-full bg-black text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-Rougebrillant transition">
                             Envoyer
                         </button>

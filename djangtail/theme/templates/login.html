@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load unicorn %}
+{% block content %}
+    <section id="colonnes">
+
+        <div class="container mx-auto min-h-screen flex flex-col items-center justify-center">
+            <div class="mt-4 mb-4 justify-center items-center mx-auto">
+            <img class="h-[80px]" src="static/img/roda.jpg" alt="">
+            </div>
+            <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-center mb-6">Connexion</h2>
+
+                <form class="space-y-6" method="POST" action="{% url 'login' %}" class="space-y-4">
+                    {% csrf_token %}
+                    <!-- Nom -->
+                    <div>
+                        <label for="username" class="block text-sm font-medium mb-1">Nom d'utilisateur</label>
+                        <input type="text" name="username" id="username" placeholder="Entrez votre nom" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Mot de passe -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium mb-1">Mot de passe</label>
+                        <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Bouton -->
+                    <div>
+                        <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 transition-colors">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+
+                <a href="{% url 'sign_in' %}">Pas de compte ? Inscrivez-vous</a>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock content %}

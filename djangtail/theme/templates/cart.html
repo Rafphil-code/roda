@@ -3,6 +3,6 @@
 
 {% block content %}
 
-{% unicorn 'cart' %}
+{% unicorn 'cart' user=request.user.id %}
 
 {% endblock content %}

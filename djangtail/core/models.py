@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+import secrets
+from django.conf import settings
 
 # Modèle Category
 class Category(models.Model):
@@ -25,7 +29,7 @@ class Product(models.Model):
     
 class UserItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     added = models.DateTimeField(auto_now_add=True)
 
@@ -44,3 +48,24 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+#On personnalise la classe User 
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = ("email")
+    REQUIRED_FIELDS = ["username"]
+
+    def __str__(self):
+        return self.email
+
+class OtpToken(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="otps")
+    otp_code = models.CharField(max_length=6, default=secrets.token_hex(3))
+    otp_created_at = models.DateTimeField(auto_now_add=True)
+    otp_expires_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+    

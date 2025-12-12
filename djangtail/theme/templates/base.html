@@ -47,8 +47,13 @@
         <div class="flex space-x-6">
         <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href=" {% url 'carts' %} "><i class="fas fa-shopping-cart"></i></a>
         <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="">Explorer</a>
-        <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="">Login</a>
+        {% if user.is_authenticated %}
+            <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+            <a class="hidden md:block text-white bg-black rounded-full p-3 pt-2 px-6 " href="{% url 'login' %}">Connexion</a>
+        {% endif %}
         </div>
+
 
         <!--hamburger pour Mobile-->
         <button id="menu-btn" class="flex flex-col justify-between w-10 h-5 md:hidden">
@@ -65,9 +70,35 @@
             <a class="hover:text-red-500" href="{% url 'products' %}">Produits</a>
             <a class="hover:text-red-500" href=" {% url 'services' %} ">Services</a>
             <a class="hover:text-red-500" href="#">Blog</a>
+            <a class=" hover:text-red-500" href=" {% url 'carts' %} "><i class="fas fa-shopping-cart"></i></a>
+            <a class=" hover:text-red-500" href="">Explorer</a>
+            {% if user.is_authenticated %}
+            <a class=" hover:text-red-500" href="{% url 'logout' %}">Déconnexion</a>
+            {% else %}
+            <a class=" hover:text-red-500" href="{% url 'login' %}">Connexion</a>
+            {% endif %}
+            
         </div>
     </div>
 </nav>
+
+{% if messages %}
+
+{% for message in messages %}
+    {% if message.tags == "success" %}
+        <div id="notif" class="relative alert alert-success opacity-2"> 
+        <span class="text-center text-white font-bold md:p-2 md:m-2">{{message}}</span> 
+        <button  onclick="document.getElementById('notif').style.display='none'" class="btn btn-sm btn-circle btn-ghost absolute text-white font-bold right-2 top-2">✕</button> 
+        </div>
+    {% else %}
+    <div id="notif" class="relative alert alert-error opacity-2"> 
+        <span class="text-center text-white font-bold md:p-2 md:m-2">{{message}}</span> 
+        <button  onclick="document.getElementById('notif').style.display='none'" class="btn btn-sm btn-circle btn-ghost absolute text-white font-bold right-2 top-2">✕</button> 
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% endif %}
 
 {% block content %}
 

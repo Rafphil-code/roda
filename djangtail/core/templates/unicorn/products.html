@@ -1,16 +1,16 @@
- <div class="container mt-2 mx-auto">
+ <div class="container mt-2 mx-auto md:p-0 sm:p-6">
                 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-transform duration-300">
     {% for product in products|slice:":visible_count" %}
         {% if forloop.counter <= visible_count %}
         
-            <div class="cursor-pointer bg-white flex flex-col space-y-3 justify-center items-center transform transition-all transition-y-2 duration-300 shadow-lg hover:shadow-2xl rounded-xl p-4">
+            <div unicorn:click="show_modal({{product.id}})" class="cursor-pointer bg-white flex flex-col space-y-3 justify-center items-center transform transition-all transition-y-2 duration-300 shadow-lg hover:shadow-2xl rounded-xl p-4">
                 <img src="{{ product.image_url.url }}" class="h-48 object-cover rounded-lg" />
                 <h3 class="mt-2 font-semibold">{{ product.name }}</h3>
                 <p class="text-Green font-semibold">{{ product.price }} FCFA</p>
                 <div class="flex space-x-2">
-                    <a href="{% url 'add_to_cart' product.id %}" class="w bg-Rougebrillant p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-lg sm:text-md">Ajouter au Panier <i class="fas fa-shopping-cart"></i></a>
-                    <a href="" class="w bg-black p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-gl sm:text-md">Voir la catégorie <i class="fas fa-plus"></i></a> 
+                    <a href="{% url 'add_to_cart' product.id %}" class="w bg-Rougebrillant p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-lg sm:text-md">Ajouter <i class="fas fa-shopping-cart"></i></a>
+                    <a href="" class="w bg-black p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-gl sm:text-md">Voir <i class="fas fa-plus"></i></a> 
                 </div>               
             </div>
         
@@ -38,6 +38,29 @@
             </button>
         </div>
 
+    {% endif %}
+
+
+    
+    {% if display_modal %}
+    
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="modal-box w-full max-w-2xl mx-auto min-w-2xl p-6 space-y-4">
+            <form method="dialog">
+            <button unicorn:click="close_modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <img src="{{ modal_product.image_url.url }}" class="w-full h-80 object-cover rounded-lg" />
+            <h3 class="text-lg font-bold">{{modal_product.name}}!</h3>
+            <p class="text-Green font-semibold">{{ modal_product.price }} FCFA</p>
+            <p> {{modal_product.description}} </p>
+            <div class="justify-center flex space-x-2">
+                    <a href="{% url 'add_to_cart' modal_product.id %}" class="w bg-Rougebrillant p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-md sm:text-md">Ajouter <i class="fas fa-shopping-cart"></i></a>
+                    <a href="" class="w bg-black p-2 sm:p-2 rounded-lg text-center text-white font-semibold md:text-md sm:text-md">Voir <i class="fas fa-plus"></i></a> 
+            </div> 
+        </div>
+    </div>
+
+    
     {% endif %}
 
 </div>

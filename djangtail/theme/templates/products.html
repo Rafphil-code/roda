@@ -2,10 +2,24 @@
 {% load unicorn %}
 {% block content %}
     <section id="colonnes">
+        <div class="relative overflow-hidden">
+                <!-- Formes en arrière-plan animées -->
+                <div class="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+                <div class="absolute top-0 right-0 w-72 h-72 bg-black-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style="animation-delay: 1s;"></div>
+
+                <div class="relative my-8 p-6 flex flex-col items-center justify-center text-center">
+                <div class="mb-4 animate-bounce">
+                <i class="fas fa-sparkles text-5xl text-Rougebrillant"></i>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-veryDarkBlue mb-4">
+                Bienvenue sur Products
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl">
+                Découvrez nos produits premium conçus pour vous
+                </p>
+                </div>
+                </div>
         <div class="container mx-auto sm:px-0 px-4">
-            <h1 class="my-6 text-xl md:text-4xl
-                text-gray-800">Bienvenue sur Products
-            </h1>
 
             {% unicorn 'productsmain' %}
             
