@@ -5,6 +5,17 @@ from django.contrib.auth import get_user_model
 import secrets
 from django.conf import settings
 
+#On personnalise la classe User 
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
+
+    def __str__(self):
+        return self.email
+
 # Modèle Category
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)  # Nom de la catégorie
@@ -26,6 +37,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
     
 class UserItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -48,17 +60,6 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
-
-#On personnalise la classe User 
-
-class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True)
-
-    USERNAME_FIELD = ("email")
-    REQUIRED_FIELDS = ["username"]
-
-    def __str__(self):
-        return self.email
 
 class OtpToken(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="otps")

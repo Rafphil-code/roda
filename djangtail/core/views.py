@@ -9,6 +9,9 @@ from .models import *
 from django.db.models import F
 from django.core.paginator import Paginator
 from django.core.validators import validate_email
+from .forms import RegisterForm
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 # Create your views here.
 
@@ -18,7 +21,6 @@ def index(request):
     return render(request, 'main.html', { 'services' : services})
 
 def send_email(request):
-    print("called")
     if request.method == "POST":
         email = request.POST.get('mail','').strip()
         name = request.POST.get('name','').strip()
@@ -133,19 +135,36 @@ def logout_user(request):
     return redirect('index')
 
 def sign_in(request):
-    return render(request, 'sign_in.html')
+    form = RegisterForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Votre compte a bien été créé, Reste à l'activer")
+            return redirect("verify_email", username=request.POST['username'])
+    context = {"form" : form}
+    return render(request, 'sign_in.html', context)
 
-def sign_in_validator(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+def verify_email(request, username):
+    user = get_user_model().objects.get(username=username)
+    user_otp = OtpToken.objects.filter(user=user).last()
 
-        if User.objects.filter(username=username).exists():
-            return render(request, 'sign_in.html', {"error" : "L'utilisateur Existe déjà"})
-        if User.objects.filter(email=email).exists():
-            return render(request, 'sign_in.html', {"error" : "L'utilisateur Existe déjà"})
-        
-        user = User.objects.create_user(username=username,email=email,password=password)
-    return redirect('login')
+    if request.method == "POST":
+        print("post called")
+        if user_otp.otp_code == request.POST['otp_code']:
+            #Je vais checker si la durée n'est pas dépassée
+            if user_otp.otp_expires_at > timezone.now():
+                user.is_active = True
+                user.save()
+                messages.success(request, "votre Compte est activé, vous pouvez désormais vous connecter")
+                return redirect("login")
+            else:
+                messages.error(request, "Votre code est expiré, veuillez redemander un code OTP")
+                return redirect("verify_email", username=user.username)
+        else:
+            messages.error(request, "Vous avez saisi un code incorrecte!")
+            return redirect("verify_email", username=user.username)
+
+    context = {}
+    return render(request, "otp_token.html", context)
 
